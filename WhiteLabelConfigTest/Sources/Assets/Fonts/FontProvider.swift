@@ -8,24 +8,28 @@
 import UIKit
 
 open class FontProvider {
-    class var lightPostScriptName: String {
-        "HelveticaNeue-Light"
-    }
+    let lightPostScriptName: String
     
-    class var regularPostScriptName: String {
-        "HelveticaNeue"
-    }
+    let regularPostScriptName: String
     
-    class var italicPostScriptName: String {
-        "HelveticaNeue-Italic"
-    }
+    let italicPostScriptName: String
     
-    class var boldPostScriptName: String {
-        "HelveticaNeue-Bold"
-    }
+    let boldPostScriptName: String
     
-    class var buttonLabel: UIFont {
+    var buttonLabel: UIFont {
         .style(.body, weight: .regular, isScaled: false)
+    }
+    
+    public init(
+        lightPostScriptName: String = "HelveticaNeue-Light",
+        regularPostScriptName: String = "HelveticaNeue",
+        italicPostScriptName: String = "HelveticaNeue-Italic",
+        boldPostScriptName: String = "HelveticaNeue-Bold"
+    ) {
+        self.lightPostScriptName = lightPostScriptName
+        self.regularPostScriptName = regularPostScriptName
+        self.italicPostScriptName = italicPostScriptName
+        self.boldPostScriptName = boldPostScriptName
     }
 }
 
@@ -39,13 +43,13 @@ extension UIFont {
         var postScriptName: String {
             switch self {
             case .light:
-                return FontProvider.lightPostScriptName
+                return ResourceManager.shared.fontProvider.lightPostScriptName
             case .regular:
-                return FontProvider.regularPostScriptName
+                return ResourceManager.shared.fontProvider.regularPostScriptName
             case .italic:
-                return FontProvider.italicPostScriptName
+                return ResourceManager.shared.fontProvider.italicPostScriptName
             case .bold:
-                return FontProvider.boldPostScriptName
+                return ResourceManager.shared.fontProvider.boldPostScriptName
             }
         }
     }
